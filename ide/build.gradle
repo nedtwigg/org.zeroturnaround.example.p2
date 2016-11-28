@@ -11,28 +11,12 @@ buildscript {
 	}
 	dependencies {
 		// a bunch of eclipse stuff
-		classpath "com.diffplug.gradle:goomph:3.5.0"
+		classpath "com.diffplug.gradle:goomph:3.6.0-SNAPSHOT"
 		// creates a targetplatform
 		classpath "org.standardout:bnd-platform:1.4.0"
 	}
 }
 
-import com.diffplug.gradle.p2.P2Model;
-import com.diffplug.gradle.FileMisc;
-import com.diffplug.gradle.pde.EclipseRelease;
-import com.diffplug.gradle.pde.PdeInstallation;
-
-File dest = file("build/ideTest");
-FileMisc.cleanDir(dest);
-
-P2Model model = new P2Model();
-model.addRepoEclipse("4.5.2");
-model.addRepo("file:///C:/Users/ntwigg/Documents/DiffPlugDev/org.zeroturnaround.example.p2/org.zeroturnaround.example.p2.updatesite/target/site");
-model.addFeature("org.zeroturnaround.example.p2.feature");
-P2Model.DirectorApp app = model.directorApp(dest, "underTest");
-app.runUsing(PdeInstallation.from(EclipseRelease.latestOfficial()));
-
-/*
 apply plugin: 'com.diffplug.gradle.oomph.ide'
 
 oomphIde {
@@ -48,5 +32,6 @@ oomphIde {
 
     repo 'file:///C:/Users/ntwigg/Documents/DiffPlugDev/org.zeroturnaround.example.p2/org.zeroturnaround.example.p2.updatesite/target/site'
     feature 'org.zeroturnaround.example.p2.feature'
+
+    runP2UsingPDE()
 }
-*/
