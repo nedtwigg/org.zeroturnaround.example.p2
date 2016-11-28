@@ -1,0 +1,36 @@
+buildscript {
+	repositories {
+		// make it easy to test a snapshot version of goomph
+		maven {	url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+		// grab dependencies from the gradle plugin portal
+		maven { url 'https://plugins.gradle.org/m2/' }
+	}
+	// make sure we don't cache stale snapshot versions
+	configurations.all {
+		resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+	}
+	dependencies {
+		// a bunch of eclipse stuff
+		classpath "com.diffplug.gradle:goomph:3.0.6"
+		// creates a targetplatform
+		classpath "org.standardout:bnd-platform:1.4.0"
+	}
+}
+
+
+apply plugin: 'com.diffplug.gradle.oomph.ide'
+
+oomphIde {
+    repoEclipse '4.5.2'
+    // jdt {}
+    eclipseIni {
+        vmargs('-Xmx2g')    // IDE can have up to 2 gigs of RAM
+    }
+    style {
+        classicTheme()  // oldschool cool
+        niceText()      // with nice fonts and visible whitespace
+    }
+
+    repo 'file:///C:/Users/ntwigg/Documents/DiffPlugDev/org.zeroturnaround.example.p2/org.zeroturnaround.example.p2.updatesite/target/site'
+    feature 'org.zeroturnaround.example.p2.feature'
+}
