@@ -11,12 +11,11 @@ buildscript {
 	}
 	dependencies {
 		// a bunch of eclipse stuff
-		classpath "com.diffplug.gradle:goomph:3.0.6"
+		classpath "com.diffplug.gradle:goomph:3.6.0-SNAPSHOT"
 		// creates a targetplatform
 		classpath "org.standardout:bnd-platform:1.4.0"
 	}
 }
-
 
 apply plugin: 'com.diffplug.gradle.oomph.ide'
 
@@ -33,4 +32,6 @@ oomphIde {
 
     repo 'file:///C:/Users/ntwigg/Documents/DiffPlugDev/org.zeroturnaround.example.p2/org.zeroturnaround.example.p2.updatesite/target/site'
     feature 'org.zeroturnaround.example.p2.feature'
+
+    runP2UsingPDE()
 }
